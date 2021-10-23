@@ -1,0 +1,63 @@
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    initialization-mode: never
+  coredb:
+    url: jdbc:postgresql://localhost:5432/postgres
+    jdbc-url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    configuration:
+      jdbc-url: jdbc:postgresql://localhost:5432/postgres
+      username: postgres
+      password: postgres
+  seconddb:
+    url: jdbc:oracle:thin:@//localhost:1521/test
+    jdbc-url: jdbc:oracle:thin:@//localhost:1521/test
+    username: test
+    password: test
+    driver-class-name: oracle.jdbc.OracleDriver
+    configuration:
+      jdbc-url: jdbc:oracle:thin:@//localhost:1521/test
+      username: test
+      password: test
+      auto-commit: false
+  liquibase:
+    url: jdbc:postgresql://localhost:5432/postgres
+    user: postgres
+    password: postgres
+    change-log: classpath:db/migration/changeLog.xml
+    enabled: true
+security:
+  oauth2:
+    resource:
+      filter-order: 3
+  auth-server-url: http://localhost:8080/oauth/check_token
+  auth-server-url-me: http://localhost:8080/oauth/users/me
+  auth-server: http://localhost:8080
+  auth-server-client-id: oauth
+  auth-server-client-secret: oauth
+cdn:
+  servers:
+    1:
+      host: localhost
+      username: root
+      password: root
+      uploadPath: /static
+      publicPath: http://localhost
+      alias: 1
+  inRotation: [1]
+languages:
+  primaryLang: en

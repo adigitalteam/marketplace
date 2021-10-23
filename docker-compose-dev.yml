@@ -1,0 +1,33 @@
+version: "3.5"
+
+services:
+  app:
+    image: ${REGISTRY_URL}/${CONTAINER_NAME}-app:${APP_VERSION}.${BUILD_NUMBER}
+    container_name: ${CONTAINER_NAME}-app 
+    build:
+      context: .
+      args:
+        HTTP_PROXY:  ${HTTP_PROXY}
+    env_file: .env
+    restart: always
+    ports:
+      - target: 8090
+        published: ${DOMAIN_PORT}
+        protocol: tcp
+        mode: host
+  db:
+    container_name: ${CONTAINER_NAME}-postgres
+    image: postgres
+    volumes:
+      - './development/server/postgres:/var/lib/postgresql'
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    restart: always
+    ports:
+      - target: 5432
+        published: 5487
+        protocol: tcp
+        mode: host
+        
