@@ -24,6 +24,6 @@ services:
     restart: always
     ports:
       - target: 5432
-        published: 5437
+        published: 5444
         protocol: tcp
         mode: host
