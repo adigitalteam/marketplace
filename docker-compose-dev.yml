@@ -23,7 +23,7 @@ services:
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=W7:P^GU-zd8w5N;{
+      - POSTGRES_PASSWORD=${PASSWORD1}
     restart: always
     ports:
       - target: 5432
